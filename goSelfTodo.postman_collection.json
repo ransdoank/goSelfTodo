@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "f8cf7fb3-d6be-4072-a66c-1229843bc20f",
+		"name": "goSelfTodo",
+		"description": "Soal 1  \nDeskripsi:  \nBuat API sederhana dengan fitur backend dan menggunakan teknologi berikut:  \n\\- Golang atau Laravel\n\nSpesifikasi Proyek:  \nTo-do list untuk pencatatan tugas pribadi\n\nBackend:\n\n1. Endpoint untuk CRUD Tugas (Create, Read, Update, Delete) Tugas\n    \n2. Gunakan database sebagai penyimpanan data\n    \n    1. Bisa menggunakan SQL atau No-SQL\n        \n3. Automation Test terkait API yang dibuat\n    \n\nRequirements:\n\n1. User bisa mencatat tugas dia hari ini dan kapan ekspektasi tugas tersebut selesai\n    \n2. User bisa update status tugas menjadi:\n    \n    1. Waiting List\n        \n    2. In Progress\n        \n    3. Done\n        \n3. User bisa hapus task (soft delete)\n    \n4. User bisa menyimpan deskripsi tugas mereka\n    \n5. User bisa melihat daftar tugas mereka berdasarkan waktu pengerjaan dan status",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3057077"
+	},
+	"item": [
+		{
+			"name": "Task CRUD",
+			"item": [
+				{
+					"name": "Read Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{serverHost}}/tasks?status=Waiting List&due_date=2024-08-21",
+							"host": [
+								"{{serverHost}}"
+							],
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Waiting List",
+									"description": "[ \"Waiting List\", \"In Progress\", \"Done\" ]"
+								},
+								{
+									"key": "due_date",
+									"value": "2024-08-21",
+									"description": "YYYY-MM-DD"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Read Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tasks",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 14:13:59 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "674"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"ID\": 1,\n        \"Title\": \"Task Edit\",\n        \"Description\": \"Description Edit\",\n        \"Status\": \"In Progress\",\n        \"DueDate\": \"2024-08-20T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T20:56:38.078+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:03:26.56+07:00\",\n        \"DeletedAt\": null\n    },\n    {\n        \"ID\": 2,\n        \"Title\": \"Task 2\",\n        \"Description\": \"Description 2\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-20T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T20:57:58.275+07:00\",\n        \"UpdatedAt\": \"2024-08-16T20:57:58.275+07:00\",\n        \"DeletedAt\": null\n    },\n    {\n        \"ID\": 3,\n        \"Title\": \"Task 2\",\n        \"Description\": \"Description 2\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-20T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T21:13:50.591+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:13:50.591+07:00\",\n        \"DeletedAt\": null\n    }\n]"
+						},
+						{
+							"name": "Example Read Response With Status Option",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{serverHost}}/tasks?status=Waiting List",
+									"host": [
+										"{{serverHost}}"
+									],
+									"path": [
+										"tasks"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "Waiting List",
+											"description": "[ \"Waiting List\", \"In Progress\", \"Done\" ]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 15:09:17 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "670"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"ID\": 3,\n        \"Title\": \"Task 2\",\n        \"Description\": \"Description 2\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-20T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T21:51:01.723+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:51:01.723+07:00\",\n        \"DeletedAt\": null\n    },\n    {\n        \"ID\": 4,\n        \"Title\": \"Task 3\",\n        \"Description\": \"Description 3\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-21T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T21:51:13.283+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:51:13.283+07:00\",\n        \"DeletedAt\": null\n    },\n    {\n        \"ID\": 6,\n        \"Title\": \"Task 5\",\n        \"Description\": \"Description 5\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-21T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T21:51:29.671+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:51:29.671+07:00\",\n        \"DeletedAt\": null\n    }\n]"
+						},
+						{
+							"name": "Example Read Response With Status & Due Date Option",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tasks?status=Waiting List&due_date=2024-08-21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "Waiting List",
+											"description": "[ \"Waiting List\", \"In Progress\", \"Done\" ]"
+										},
+										{
+											"key": "due_date",
+											"value": "2024-08-21"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 16:22:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "447"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"ID\": 4,\n        \"Title\": \"Task 3\",\n        \"Description\": \"Description 3\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-21T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T21:51:13.283+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:51:13.283+07:00\",\n        \"DeletedAt\": null\n    },\n    {\n        \"ID\": 6,\n        \"Title\": \"Task 5\",\n        \"Description\": \"Description 5\",\n        \"Status\": \"Waiting List\",\n        \"DueDate\": \"2024-08-21T07:00:00+07:00\",\n        \"CreatedAt\": \"2024-08-16T21:51:29.671+07:00\",\n        \"UpdatedAt\": \"2024-08-16T21:51:29.671+07:00\",\n        \"DeletedAt\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\":\"Task 5\",\n    \"Description\":\"Description 5\",\n    \"Status\":\"Waiting List\",\n    \"DueDate\":\"2024-08-21T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverHost}}/tasks",
+							"host": [
+								"{{serverHost}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Create Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Title\":\"Task 2\",\n    \"Description\":\"Description 2\",\n    \"Status\":\"Waiting List\",\n    \"DueDate\":\"2024-08-20T00:00:00Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/tasks",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 14:13:50 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "217"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ID\": 3,\n    \"Title\": \"Task 2\",\n    \"Description\": \"Description 2\",\n    \"Status\": \"Waiting List\",\n    \"DueDate\": \"2024-08-20T00:00:00Z\",\n    \"CreatedAt\": \"2024-08-16T21:13:50.591+07:00\",\n    \"UpdatedAt\": \"2024-08-16T21:13:50.591+07:00\",\n    \"DeletedAt\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    // \"Title\":\"Task Edit\", // optional\n    // \"Description\":\"Description Edit\", // optional\n    \"Status\":\"In Progress\" // [ \"Waiting List\", \"In Progress\", \"Done\" ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverHost}}/tasks/5",
+							"host": [
+								"{{serverHost}}"
+							],
+							"path": [
+								"tasks",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Update Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"Title\":\"Task Edit\", // optional\n    // \"Description\":\"Description Edit\", // optional\n    \"Status\":\"In Progress\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/tasks/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 14:03:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "226"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ID\": 1,\n    \"Title\": \"Task Edit\",\n    \"Description\": \"Description Edit\",\n    \"Status\": \"In Progress\",\n    \"DueDate\": \"2024-08-20T07:00:00+07:00\",\n    \"CreatedAt\": \"2024-08-16T20:56:38.078+07:00\",\n    \"UpdatedAt\": \"2024-08-16T21:03:26.56+07:00\",\n    \"DeletedAt\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{serverHost}}/tasks/1",
+							"host": [
+								"{{serverHost}}"
+							],
+							"path": [
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Delete Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tasks/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 14:15:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "serverHost",
+			"value": "http://localhost:8080"
+		}
+	]
+}
